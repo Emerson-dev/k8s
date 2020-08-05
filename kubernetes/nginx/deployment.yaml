@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-nginx
+  labels:
+    app: hello-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-nginx
+  template:
+    metadata:
+      labels:
+        app: hello-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.17-alpine
+        ports:
+        - containerPort: 80
+
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: nginx-conf
+          readOnly: true
+        - mountPath: /usr/share/nginx/html
+          name: index-html
+          readOnly: true
+      
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: nginx-conf
+          items:
+            - key: nginx.conf
+              path: nginx.conf
+      - name: index-html
+        configMap:
+          name: index-html
+          items:
+            - key: index-html
+              path: index.html

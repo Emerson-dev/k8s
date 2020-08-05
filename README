@@ -1,0 +1,20 @@
+## Criando a secret no Kubernets
+kubectl create secret generic mysql-pass --from-literal=password='123456'
+
+## Comandos
+kubectl apply -f deployment.yaml
+kubectl logs POD NAME
+kubectl get deployments
+kubectl get configmaps
+kubectl get services
+kubectl get secrets
+kubectl get svc
+kubectl get pods
+kubectl exec -it POD NAME bash
+kubectl delete deployments --all
+kubectl get PersistentVolumeClaim
+
+kubectl expose deployment hello-nginx --type=LoadBalancer --port=80
+
+## Abrir o servico no navegador
+minikube service nginx-service
