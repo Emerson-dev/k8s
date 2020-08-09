@@ -1,0 +1,16 @@
+steps:
+- id: "Rodando build"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build','-f', 'Dockerfile',  '--cache-from', 'gcr.io/$PROJECT_ID/$REPO_NAME:builder', '--target', 'builder', '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:builder', '.']
+
+- id: "Rodando teste"
+  name: 'docker/compose:1.19.0'
+  env:
+    - 'PROJECT_ID=$PROJECT_ID'
+    - 'REPO_NAME=$REPO_NAME'
+  args: ['up', '--exit-code-from', 'test', 'test']
+
+- id: "Salvando a imagem"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--cache-from', 'gcr.io/$PROJECT_ID/$REPO_NAME:builder', '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA', '.']
+images: ['gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
