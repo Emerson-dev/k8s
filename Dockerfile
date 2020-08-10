@@ -8,7 +8,7 @@ COPY go.mod .
 
 RUN go mod download
 
-COPY go .
+COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go install -a -installsuffix "static" k8s
 
