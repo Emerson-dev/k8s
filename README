@@ -1,3 +1,19 @@
+## EXERCICIO
+### Servidor Web - Nginx
+https://github.com/Emerson-dev/k8s/tree/master/kubernetes/nginx
+
+### Configuração do MySQL
+https://github.com/Emerson-dev/k8s/tree/master/kubernetes/mysql
+
+### Desafio Go!
+https://hub.docker.com/repository/docker/vremerson/ks8
+docker push vremerson/ks8:1.0
+
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+minikube service ks8-service
+
+# Comandos
 ## Minikube
 minikube start
 minikube stop
@@ -24,7 +40,7 @@ kubectl expose deployment hello-nginx --type=LoadBalancer --port=80
 ## Abrir o servico no navegador
 minikube service nginx-service
 
-## Golang
+## Golang docker
 docker build -t vremerson/ks8:1.0 .
 
 docker run -it -p 8000:8000  vremerson/ks8:1.0
