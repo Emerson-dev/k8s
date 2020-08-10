@@ -10,7 +10,7 @@ steps:
     - 'REPO_NAME=$REPO_NAME'
   args: ['up', '--exit-code-from', 'test', 'test']
 
-- id: "Salvando a imagem"
-  name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--cache-from', 'gcr.io/$PROJECT_ID/$REPO_NAME:builder', '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA', '.']
-images: ['gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
+#- id: "Salvando a imagem"
+#  name: 'gcr.io/cloud-builders/docker'
+#  args: ['build', '--cache-from', 'gcr.io/$PROJECT_ID/$REPO_NAME:builder', '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA', '.']
+#images: ['gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']

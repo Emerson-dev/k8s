@@ -12,9 +12,6 @@ COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go install -a -installsuffix "static" k8s
 
-#ENTRYPOINT ["/go/bin/k8s"]
-#ENTRYPOINT ["k8s"]
-
 FROM scratch
 
 USER 1000
